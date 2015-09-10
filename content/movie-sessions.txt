@@ -1,0 +1,96 @@
+unsafe headers (browser automatically sets, no need to, can't, specify) http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader%28%29-method :
+  Accept-Charset
+  Accept-Encoding
+  Access-Control-Request-Headers
+  Access-Control-Request-Method
+  Connection
+  Content-Length
+  Cookie
+  Cookie2
+  Date
+  DNT
+  Expect
+  Host
+  Keep-Alive
+  Origin
+  Referer
+  TE
+  Trailer
+  Transfer-Encoding
+  Upgrade
+  User-Agent
+  Via
+
+Duplicate Check
+  Request URL:https://www.themoviedb.org/movie/duplicate_check?query=Deep%20Dynasty&imdb_id=tt3239770&_=1441343845524
+  Request Method:GET
+  Request Header:
+    Accept:application/json, text/javascript, */*; q=0.01
+    Accept-Encoding:gzip, deflate, sdch
+    Accept-Language:en-US,en;q=0.8
+    Connection:keep-alive
+    Cookie:auth=ID%3D55e7d9869251413e45001186%26R%3D572255; prefs=v%3D1%26language%3Den%26locale%3Dus%26adult%3Dtrue%26timezone%3DAmerica%2FNew_York%26list_style%3D1; _gat=1; _ga=GA1.2.2018658200.1441323650; session=BAh7BkkiD3Nlc3Npb25faWQGOgZFVEkiRTc3NWQ0MTRmNmY3MWFlOWEwYTRm%0AMDgzMjUyZTMxMWE0MzdjNDlkMWZhYjVjNzgxYzc5NGI1YWIyYjEwYjUzMjkG%0AOwBG%0A--e6a911eb756f9964ad37bb15948e00b8729bd301
+    DNT:1
+    Host:www.themoviedb.org
+    Referer:https://www.themoviedb.org/movie/new
+    User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+    X-Requested-With:XMLHttpRequest
+  Response:
+    Duplicate Found:
+      { "failure": true,
+        "html_results": ["<li><a href=\"/movie/11-star-wars\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/tvSlBzAdRE29bZe5yYWrJ2ds137.jpg\" width=\"45\"></a><p><a href=\"/movie/11-star-wars\" target=\"_blank\">Star Wars: Episode IV - A New Hope</a><br>Mark Hamill, Harrison Ford, Carrie Fisher</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/12180-star-wars-the-clone-wars\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/xd6yhmtS6mEURZLwUDT5raEMbf.jpg\" width=\"45\"></a><p><a href=\"/movie/12180-star-wars-the-clone-wars\" target=\"_blank\">Star Wars: The Clone Wars</a><br>Samuel L. Jackson, Christopher Lee, Anthony Daniels</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/1891-star-wars-episode-v-the-empire-strikes-back\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/6u1fYtxG5eqjhtCPDx04pJphQRW.jpg\" width=\"45\"></a><p><a href=\"/movie/1891-star-wars-episode-v-the-empire-strikes-back\" target=\"_blank\">Star Wars: Episode V - The Empire Strikes Back</a><br>Mark Hamill, Harrison Ford, Carrie Fisher</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/1892-star-wars-episode-vi-return-of-the-jedi\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/jx5p0aHlbPXqe3AH9G15NvmWaqQ.jpg\" width=\"45\"></a><p><a href=\"/movie/1892-star-wars-episode-vi-return-of-the-jedi\" target=\"_blank\">Star Wars: Episode VI - Return of the Jedi</a><br>Mark Hamill, Harrison Ford, Carrie Fisher</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/357450-star-wars-the-new-republic-anthology\" target=\"_blank\"><img src=\"https://d3a8mw37cqal2z.cloudfront.net/assets/653d0f769740b96ef808f28f5834837d/images/no-poster-w45.jpg\" width=\"45\"></a><p><a href=\"/movie/357450-star-wars-the-new-republic-anthology\" target=\"_blank\">Star Wars: The New Republic Anthology</a><br></p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/292404-the-haunted-village\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/sc9X6xQ78PpHwHRXjoD3Yg52FGQ.jpg\" width=\"45\"></a><p><a href=\"/movie/292404-the-haunted-village\" target=\"_blank\">The Haunted Village</a><br></p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/1895-star-wars-episode-iii-revenge-of-the-sith\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/tgr5Pdy7ehZYBqBkN2K7Q02xgOb.jpg\" width=\"45\"></a><p><a href=\"/movie/1895-star-wars-episode-iii-revenge-of-the-sith\" target=\"_blank\">Star Wars: Episode III - Revenge of the Sith</a><br>Hayden Christensen, Ewan McGregor, Natalie Portman</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/140607-star-wars-episode-vii-the-force-awakens\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/lPMLNr8IEvwRMy36sPd5Zw6dk6D.jpg\" width=\"45\"></a><p><a href=\"/movie/140607-star-wars-episode-vii-the-force-awakens\" target=\"_blank\">Star Wars: Episode VII - The Force Awakens</a><br>Mark Hamill, Carrie Fisher, Harrison Ford</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/1893-star-wars-episode-i-the-phantom-menace\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/n8V09dDc02KsSN6Q4hC2BX6hN8X.jpg\" width=\"45\"></a><p><a href=\"/movie/1893-star-wars-episode-i-the-phantom-menace\" target=\"_blank\">Star Wars: Episode I - The Phantom Menace</a><br>Liam Neeson, Ewan McGregor, Natalie Portman</p><div style=\"clear: both;\"></div></li>", "<li><a href=\"/movie/1894-star-wars-episode-ii-attack-of-the-clones\" target=\"_blank\"><img src=\"https://image.tmdb.org/t/p/w45/2vcNFtrZXNwIcBgH5e2xXCmVR8t.jpg\" width=\"45\"></a><p><a href=\"/movie/1894-star-wars-episode-ii-attack-of-the-clones\" target=\"_blank\">Star Wars: Episode II - Attack of the Clones</a><br>Ewan McGregor, Natalie Portman, Hayden Christensen</p><div style=\"clear: both;\"></div></li>"],
+        "imdb_id_duplicate": false }
+      or (with no query value)
+      
+
+    No Duplicate:
+      { "success":true }
+
+IMDb Validation
+   Request URL:https://www.themoviedb.org/movie/imdb_validation?translate=false&imdb_id=tt1185842&_=1441348158211
+   Request Method:GET
+   Request Headers:
+     Accept:application/json, text/javascript, */*; q=0.01
+     Accept-Encoding:gzip, deflate, sdch
+     Accept-Language:en-US,en;q=0.8
+     Connection:keep-alive
+     Cookie:auth=ID%3D55e7d9869251413e45001186%26R%3D572255; prefs=v%3D1%26language%3Den%26locale%3Dus%26adult%3Dtrue%26timezone%3DAmerica%2FNew_York%26list_style%3D1; _gat=1; _ga=GA1.2.2018658200.1441323650; session=BAh7BkkiD3Nlc3Npb25faWQGOgZFVEkiRTc3NWQ0MTRmNmY3MWFlOWEwYTRm%0AMDgzMjUyZTMxMWE0MzdjNDlkMWZhYjVjNzgxYzc5NGI1YWIyYjEwYjUzMjkG%0AOwBG%0A--e6a911eb756f9964ad37bb15948e00b8729bd301
+     DNT:1
+     Host:www.themoviedb.org
+     Referer:https://www.themoviedb.org/movie/new
+     User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+     X-Requested-With:XMLHttpRequest
+
+New movie
+   Request URL:https://www.themoviedb.org/movie/new?language=en
+   Request Method:POST
+   Request Header:
+     Accept:application/json, text/javascript, */*; q=0.01
+     Accept-Encoding:gzip, deflate
+     Accept-Language:en-US,en;q=0.8
+     Connection:keep-alive
+     Content-Length:404
+     Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+     Cookie:auth=ID%3D55e7d9869251413e45001186%26R%3D572255; prefs=v%3D1%26language%3Den%26locale%3Dus%26adult%3Dtrue%26timezone%3DAmerica%2FNew_York%26list_style%3D1; _gat=1; _ga=GA1.2.2018658200.1441323650; session=BAh7BkkiD3Nlc3Npb25faWQGOgZFVEkiRTc3NWQ0MTRmNmY3MWFlOWEwYTRm%0AMDgzMjUyZTMxMWE0MzdjNDlkMWZhYjVjNzgxYzc5NGI1YWIyYjEwYjUzMjkG%0AOwBG%0A--e6a911eb756f9964ad37bb15948e00b8729bd301
+     DNT:1
+     Host:www.themoviedb.org
+     Origin:https://www.themoviedb.org
+     Referer:https://www.themoviedb.org/movie/new
+     User-Agent:Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36
+     X-Requested-With:XMLHttpRequest
+   Form Data:
+     serialized: original_title=Renaissance+Girl&overview=A+brilliant+but+uptight+female+computer+programmer+takes+a+job+at+a+Renaissance+faire%2C+where+she+struggles+with+the+idea+that+there+may+be+more+to+life+than+just+our+ever-present+computing+devices.&imdb_id=tt1185842&translation_verified=true&duplicate_verified=true&adult=false&video=false&tagline=Who+says+life's+not+Faire%3F&runtime=&budget=&revenue=&webpage=
+     original_title:Renaissance Girl
+     overview:A brilliant but uptight female computer programmer takes a job at a Renaissance faire, where she struggles with the idea that there may be more to life than just our ever-present computing devices.
+     imdb_id:tt1185842
+     translation_verified:true
+     duplicate_verified:true
+     adult:false
+     video:false
+     tagline:Who says life's not Faire?
+     runtime:
+     budget:
+     revenue:
+     webpage:
+   Response:
+     {"success":true,"redirect":"/movie/357956-renaissance-girl?language=en"}

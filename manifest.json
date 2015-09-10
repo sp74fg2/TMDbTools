@@ -1,0 +1,52 @@
+{
+  "manifest_version": 2,
+
+  "name": "TMDb Tools",
+  "description": "Additional tools for TMDb, includes tools to help import data from IMDb.",
+  "version": "0.1",
+
+  "permissions": [
+    "tabs",
+    "http://www.imdb.com/"
+  ],
+
+  "background": {
+    "scripts": [
+      "vendor/jquery-2.1.4.min.js",
+      "background/eventPage.js"
+    ],
+    "persistent": false
+  },
+
+  "content_scripts": [{
+    "matches": ["https://www.themoviedb.org/movie/*active_nav_item=cast*"],
+    "js": [
+      "vendor/jquery-2.1.4.min.js",
+      "vendor/jquery-ui/jquery-ui.min.js",
+      "content/accent-fold.js",
+      "content/moviecast.js"
+    ],
+    "css": [
+      "vendor/jquery-ui/jquery-ui.css",
+      "vendor/jquery-ui/jquery-ui.structure.css",
+      "vendor/jquery-ui/jquery-ui.theme.css",
+      "content/moviecast.css"
+    ]
+  }, {
+    "matches": ["https://www.themoviedb.org/movie/new*"],
+    "js": [
+      "vendor/jquery-2.1.4.min.js",
+      "content/movie.js"
+    ]
+  }],
+
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "web_accessible_resources": [
+    "vendor/jquery-ui/images/*",
+    "minus-icon.png"
+  ]
+}
