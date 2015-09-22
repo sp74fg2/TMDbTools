@@ -1,4 +1,5 @@
-TMDb Cast: [{
+TMDb-Cast: [
+  {
     "cast_id": 1,
     "character": "",
     "credit_id": "55e4bc9292514116080005fd",
@@ -12,15 +13,20 @@ TMDb Cast: [{
   ...
 ]
 
-IMDb Cast Notes: [
-  ""
-]
-IMDb Cast: [{
+IMDb Cast: [
+  {
     "name": "Person Name",
     "imdbId": "tt000000",
-    "character": "Character Name",    After_parsing,_(as_XXXXX)_is_removed
+    "character": "Character Name",  After_parsing, _(as_XXXXX)_is_removed
     "imageUrl": "",
-    "creditedAs": ""                  After_parsing,_contains_XXXXX_from_(as_XXXXX)
+    "creditedAs": ""  After_parsing,  _contains_XXXXX_from_(as_XXXXX)
   },
   ...
 ]
+
+IMDb Movie: 
+  {
+    "title": "Movie Title",
+    "overview": "movie overview ...",
+    
+  }

@@ -18,27 +18,23 @@
     "persistent": false
   },
 
-  "content_scripts": [{
-    "matches": ["https://www.themoviedb.org/movie/*active_nav_item=cast*"],
-    "js": [
-      "vendor/jquery-2.1.4.min.js",
-      "vendor/jquery-ui/jquery-ui.min.js",
-      "content/accent-fold.js",
-      "content/moviecast.js"
-    ],
-    "css": [
-      "vendor/jquery-ui/jquery-ui.css",
-      "vendor/jquery-ui/jquery-ui.structure.css",
-      "vendor/jquery-ui/jquery-ui.theme.css",
-      "content/moviecast.css"
-    ]
-  }, {
-    "matches": ["https://www.themoviedb.org/movie/new*"],
-    "js": [
-      "vendor/jquery-2.1.4.min.js",
-      "content/movie.js"
-    ]
-  }],
+  "content_scripts": [
+    {
+      "matches": [ "https://www.themoviedb.org/movie/*active_nav_item=cast*" ],
+      "js": [
+        "vendor/jquery-2.1.4.min.js",
+        "vendor/jquery-ui/jquery-ui.min.js",
+        "content/accent-fold.js",
+        "content/moviecast.js"
+      ],
+      "css": [
+        "vendor/jquery-ui/jquery-ui.css",
+        "vendor/jquery-ui/jquery-ui.structure.css",
+        "vendor/jquery-ui/jquery-ui.theme.css",
+        "content/moviecast.css"
+      ]
+    }
+  ],
 
   "icons": {
     "48": "icon48.png",
