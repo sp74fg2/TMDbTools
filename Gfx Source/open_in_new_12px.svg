@@ -1,58 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="12"
-   viewBox="0 0 12 12"
-   width="12"
-   id="svg2"
-   version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="open_in_new_12px.svg"
-   inkscape:export-filename="/media/stephen/7AB7-DE16/Chrome Extensions/TMDbImportFromIMDb Gfx/open_in_new_12px.png"
-   inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
-  <metadata
-     id="metadata12">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs10" />
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1127"
-     id="namedview8"
-     showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="2.6145263"
-     inkscape:cy="3.8153305"
-     inkscape:window-x="-4"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg2" />
-  <path
-     id="path4207"
-     style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;baseline-shift:baseline;text-anchor:start;white-space:normal;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#525252;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-     d="M 6.2763018,-5.9136902e-8 C 5.8594262,7.3383335e-5 5.6507465,0.50394069 5.9455097,0.79872892 L 7.9893877,2.8427816 3.9621572,6.870013 A 0.80615652,0.80615652 0 1 0 5.1021734,8.0100291 L 9.1294047,3.9827986 11.144595,5.9979884 c 0.08438,0.084338 0.197722,0.1332757 0.316972,0.1367947 0.263717,0.00776 0.48173,-0.2037554 0.481757,-0.4675868 l 0,-5.19943499 C 11.943298,0.20933965 11.733808,2.501878e-5 11.475387,-5.9136898e-8 l -5.1990852,0 z M 0.86275326,1.4314492 a 0.80615652,0.80615652 0 0 0 -0.80607591,0.806076 l 0,8.9563988 A 0.80615652,0.80615652 0 0 0 0.86275326,12 l 8.95639904,0 a 0.80615652,0.80615652 0 0 0 0.8060757,-0.806076 l 0,-2.9897229 C 10.52061,8.1287856 10.421307,8.0451928 10.329072,7.9530019 a 1.8568897,1.8568897 0 0 1 -3.58e-4,-3.582e-4 L 9.0130683,6.636997 l 0,3.750842 -7.3442472,0 0,-7.3442469 3.7510169,0 -1.4288259,-1.428826 a 1.8568897,1.8568897 0 0 0 -1.792e-4,0 c -0.0582,-0.058204 -0.1113531,-0.1200506 -0.16216,-0.1833258 l -2.96593218,0 z" />
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg2" sodipodi:docname="open_in_new_12px.svg" inkscape:version="0.91 r13725" inkscape:export-ydpi="90" inkscape:export-xdpi="90" inkscape:export-filename="/media/stephen/7AB7-DE16/Chrome Extensions/TMDbImportFromIMDb Gfx/open_in_new_12px.png" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-473 275 12 12"
+	 style="enable-background:new -473 275 12 12;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#525252;}
+</style>
+<path class="st0" d="M-466.7,275c-0.4,0-0.6,0.5-0.3,0.8l2,2l-4,4c-0.3,0.3-0.3,0.8,0,1.1c0.3,0.3,0.8,0.3,1.1,0c0,0,0,0,0,0l4-4
+	l2,2c0.1,0.1,0.2,0.1,0.3,0.1c0.3,0,0.5-0.2,0.5-0.5v-5.2c0-0.3-0.2-0.5-0.5-0.5C-461.5,275-466.7,275-466.7,275z M-472.2,276.4
+	c-0.4,0-0.8,0.4-0.8,0.8v9c0,0.4,0.4,0.8,0.8,0.8h9c0.4,0,0.8-0.4,0.8-0.8v-3c-0.1-0.1-0.2-0.2-0.3-0.3c0,0,0,0,0,0l-1.3-1.3v3.8
+	h-7.3V278h3.8l-1.4-1.4c0,0,0,0,0,0c-0.1-0.1-0.1-0.1-0.2-0.2H-472.2L-472.2,276.4z"/>
 </svg>
