@@ -1,0 +1,190 @@
+<!--<div id="new_movie_wizard" role="application" class="wizard clearfix vertical">-->
+<!----<div class="content clearfix">-->
+<form id="imdbImport">
+	<h2>Importing from IMDb</h2>
+
+	<input type="hidden" name="original_title" id="original_title">
+	<input type="hidden" name="overview" id="overview">
+	<input type="hidden" name="imdb_id" id="imdb_id">
+	<input type="hidden" name="translation_verified" id="translation_verified" value="true">
+
+	<section id="duplicateCheck" class="body" style="display:none">
+		<p><strong>Original Title</strong>: <span class="original_title"></span></p>
+		<p>
+			It looks like we've found some potential duplicates. Is the item you're attempting to add listed below?
+			If so, you don't need to create a new movie.
+		</p>
+		<p class="duplicate_check">If the movie you're adding is not listed here, select the checkbox below and continue by clicking next.</p>
+		<ul class="found_duplicates"></ul>
+		<div class="duplicate_check">
+			<label style="display:inline-block !important;margin-top: 12px !important;">
+				<input id="duplicate_verified" type="checkbox" class="checkbox" name="duplicate_verified" value="true">I don't see the item I'm trying to import
+			</label>
+			<button style="display:none">Next</button>
+		</div>
+	</section>
+
+	<input type="hidden" name="adult" id="adult" value="false">
+	<input type="hidden" name="video" id="video" value="false">
+	<input type="hidden" name="tagline" id="tagline" value="">
+	<input type="hidden" name="runtime" id="runtime" value="">
+	<input type="hidden" name="budget" id="budget" value="">
+	<input type="hidden" name="revenue" id="revenue" value="">
+	<input type="hidden" name="webpage" id="webpage" value="">
+
+	<section id="verifyAndImport" class="body" style="display:none">
+		<br />
+		<h2 class="inner">Verify &amp; Import</h2>
+		<div id="error_window" class="error_status hide" style="display: block;"></div>
+
+		<p><strong>Original Title</strong>: <span class="original_title"></span></p>
+		<p><strong>Overview</strong>: <span class="overview"></span></p>
+		<p><strong>Genre</strong>: <span class="genre"></span></p>
+		<p><strong>IMDB ID</strong>: <span class="imdb_id"></span></p>
+		<!--<p><strong>Translation Verified</strong>: <span class="translation_verified"></span></p>-->
+		<!--<p><strong>Duplicate Check Verified</strong>: <span class="duplicate_check_verified"></span></p>-->
+		<p><strong>Adult Movie</strong>: <span class="adult"></span></p>
+		<!--<p><strong>Video</strong>: <span class="video"></span></p>-->
+		<p><strong>Tagline</strong>: <span class="tagline"></span></p>
+		<p><strong>Runtime</strong>: <span class="runtime"></span></p>
+		<!--<p><strong>Budget</strong>: <span class="budget"></span></p>
+		<p><strong>Revenue</strong>: <span class="revenue"></span></p>-->
+
+		<br />
+		<h3>Not imported by TMDbTools</h3>
+		<br />
+		<p><strong>Webpage</strong>: <span class="webpage">Not yet implemented</span></p>
+		<p><strong>Budget &amp; Revenue</strong>: <span>IMDb doesn't have reliable information</span></p>
+		<p><strong>Plot Keywords</strong>: <span>Not yet implemented</span></p>
+		<p><strong>Spoken Language</strong>: <span>Not yet implemented</span></p>
+		<p><strong>Cast</strong>: <span>Cast isn't imported at this stage.  Once imported, edit the movie's cast to perform cast import.</span></p>
+		<p><strong>Crew</strong>: <span>Not yet implemented</span></p>
+
+		<button class="import" style="float:right">Import</button>
+	</section>
+	<section id="importResults" class="body" style="display:none">
+		<div class="result newMovie">Create new movie<p></p></div>
+		<div class="result addGenres">Add Genres<p></p></div>
+		<a style="display:none;margin-left:20px">Go to imported movie</a>
+	</section>
+	<section id="loading" class="body" style="text-align:center;min-height:250px">
+		<svg version="1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100px" height="100px" viewBox="0 0 28 28" sstyle=margin: 20px;">
+			<!-- 28= RADIUS*2 + STROKEWIDTH -->
+
+			<title>Material design circular activity spinner with CSS3 animation</title>
+			<style type="text/css">
+				/**************************/
+				/* STYLES FOR THE SPINNER */
+				/**************************/
+
+				/*
+				* Constants:
+				*      RADIUS      = 12.5
+				*      STROKEWIDTH = 3
+				*      ARCSIZE     = 270 degrees (amount of circle the arc takes up)
+				*      ARCTIME     = 1333ms (time it takes to expand and contract arc)
+				*      ARCSTARTROT = 216 degrees (how much the start location of the arc
+				*                                should rotate each time, 216 gives us a
+				*                                5 pointed star shape (it's 360/5 * 2).
+				*                                For a 7 pointed star, we might do
+				*                                360/7 * 3 = 154.286)
+				*
+				*      SHRINK_TIME = 400ms
+				*/
+
+				.qp-circular-loader {
+					width: 28px; /* 2*RADIUS + STROKEWIDTH */
+					height: 28px; /* 2*RADIUS + STROKEWIDTH */
+				}
+
+				.qp-circular-loader-path {
+					stroke-dasharray: 58.9; /* 2*RADIUS*PI * ARCSIZE/360 */
+					stroke-dashoffset: 59; /* 2*RADIUS*PI * ARCSIZE/360 */
+					/* hides things initially */
+				}
+
+				/* SVG elements seem to have a different default origin */
+				.qp-circular-loader, .qp-circular-loader * {
+					-webkit-transform-origin: 50% 50%;
+				}
+
+				/* Rotating the whole thing */
+				@-webkit-keyframes rotate {
+					from {
+						-webkit-transform: rotate(0deg);
+					}
+
+					to {
+						-webkit-transform: rotate(360deg);
+					}
+				}
+
+				.qp-circular-loader {
+					-webkit-animation-name: rotate;
+					-webkit-animation-duration: 1568.63ms; /* 360 * ARCTIME / (ARCSTARTROT + (360-ARCSIZE)) */
+					-webkit-animation-iteration-count: infinite;
+					-webkit-animation-timing-function: linear;
+				}
+
+				/* Filling and unfilling the arc */
+				@-webkit-keyframes fillunfill {
+					from {
+						stroke-dashoffset: 58.8; /* 2*RADIUS*PI * ARCSIZE/360 - 0.1 */
+						/* 0.1 a bit of a magic constant here */
+					}
+
+					50% {
+						stroke-dashoffset: 0;
+					}
+
+					to {
+						stroke-dashoffset: -58.4; /* -(2*RADIUS*PI * ARCSIZE/360 - 0.5) */
+						/* 0.5 a bit of a magic constant here */
+					}
+				}
+
+				@-webkit-keyframes rot {
+					from {
+						-webkit-transform: rotate(0deg);
+					}
+
+					to {
+						-webkit-transform: rotate(-360deg);
+					}
+				}
+
+				@-webkit-keyframes colors {
+					from {
+						/*stroke: #4285f4;*/
+						stroke: #5a7825;
+					}
+
+					to {
+						/*stroke: #4285f4;*/
+						stroke: #5a7825;
+					}
+				}
+
+				.qp-circular-loader-path {
+					-webkit-animation-name: fillunfill, rot, colors;
+					-webkit-animation-duration: 1333ms, 5332ms, 5332ms; /* ARCTIME, 4*ARCTIME, 4*ARCTIME */
+					-webkit-animation-iteration-count: infinite, infinite, infinite;
+					-webkit-animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1), steps(4), linear;
+					-webkit-animation-play-state: running, running, running;
+					-webkit-animation-fill-mode: forwards;
+				}
+			</style>
+
+			<!-- 3= STROKEWIDTH -->
+			<!-- 14= RADIUS + STROKEWIDTH/2 -->
+			<!-- 12.5= RADIUS -->
+			<!-- 1.5=  STROKEWIDTH/2 -->
+			<!-- ARCSIZE would affect the 1.5,14 part of this... 1.5,14 is specific to 270 degress -->
+			<g class="qp-circular-loader">
+				<path class="qp-circular-loader-path" fill="none" d="M 14,1.5 A 12.5,12.5 0 1 1 1.5,14" stroke-width="3" stroke-linecap="round"></path>
+			</g>
+		</svg>
+	</section>
+</form>
+<!----</div>
+</div>-->

@@ -1,0 +1,14 @@
+﻿Movies to test with:
+
+Marvel Knights: Eternals
+http://www.imdb.com/title/tt4058600/
+https://forums.thetvdb.com/viewtopic.php?f=7&t=25652
+
+
+
+
+
+______________________________________________________________________________________________________________________________________________
+
+Endpoint Resolver: JavaScript Library to hunt for Location redirects:
+http://ajaxian.com/archives/endpoint-resolver-javascript-library-to-hunt-for-location-redirects

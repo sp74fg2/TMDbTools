@@ -57,4 +57,5 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 	grunt.registerTask('default', ['lint', 'lintspaces']);
+	grunt.registerTask('noCsslint', ['jshint', 'lintspaces']);
 };

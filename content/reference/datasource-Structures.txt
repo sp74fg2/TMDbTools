@@ -1,32 +1,95 @@
-TMDb-Cast: [
-  {
-    "cast_id": 1,
-    "character": "",
-    "credit_id": "55e4bc9292514116080005fd",
-    "id": 1014834,
-    "name": "Jack Perrin",
-    "bson_id": "4f6d801757c7b15bc001568d",
-    "profile_path": "/6mg1uFfOKfmo2aBRZnvnwnwlDti.jpg",
-    "order": 1,
-    "url": "1014834-jack-perrin"
-  },
-  ...
-]
+TMDb Cast:
+  [
+    {
+      "cast_id": 1,
+      "character": "",
+      "credit_id": "55e4bc9292514116080005fd",
+      "id": 1014834,
+      "name": "Jack Perrin",
+      "bson_id": "4f6d801757c7b15bc001568d",
+      "profile_path": "/6mg1uFfOKfmo2aBRZnvnwnwlDti.jpg",
+      "order": 1,
+      "url": "1014834-jack-perrin"
+    },
+    ...
+  ]
 
-IMDb Cast: [
-  {
-    "name": "Person Name",
-    "imdbId": "tt000000",
-    "character": "Character Name",  After_parsing, _(as_XXXXX)_is_removed
-    "imageUrl": "",
-    "creditedAs": ""  After_parsing,  _contains_XXXXX_from_(as_XXXXX)
-  },
-  ...
-]
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-IMDb Movie: 
+IMDb Cast:
+  [
+    {
+      "name": "Person Name",
+      "imdbId": "tt000000",
+      "character": "Character Name",
+      "imageUrl": "",
+      "creditedAs": ""
+    },
+    ...
+  ],
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+IMDb Movie:
   {
+	"imdbId": "tt123456",
     "title": "Movie Title",
     "overview": "movie overview ...",
-    
+    "genres": [ "Action", "Adventure", "Comedy", ... ],
+    "isAdult": true|false,
+	"tagline": "possibly long string",
+	"runtime": "104",
+	"isMiniseries": true|false
   }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+lookupIMDbId (//api.themoviedb.org/3/find/tt2404029?external_source=imdb_id&api_key=xxxx)
+	{
+	  "movie_results": [
+		{
+		  "adult": false,
+		  "backdrop_path": "/zHJKlA5v3i6eNM7UYXwpnSLc7Sa.jpg",
+		  "genre_ids": [
+			80,
+			18
+		  ],
+		  "id": 343700,
+		  "original_language": "en",
+		  "original_title": "A Mother's Son",
+		  "overview": "A mother suspects that her son could be the killer of a recently found dead girl, and becomes caught in a torturous dilemma of whether to denounce him, or protect him and hide the act.",
+		  "release_date": "2012-09-03",
+		  "poster_path": "/gzqNE5zWv3G1n1JzxopySplKkAh.jpg",
+		  "popularity": 0.001878,
+		  "title": "A Mother's Son",
+		  "video": false,
+		  "vote_average": 0,
+		  "vote_count": 0
+		}
+	  ],
+	  "person_results": [],
+	  "tv_results": [
+		{
+		  "backdrop_path": "/eMUavGpSuDNYW8BrAQeaGEv4mIS.jpg",
+		  "first_air_date": "2012-09-03",
+		  "genre_ids": [
+			80,
+			18
+		  ],
+		  "id": 61574,
+		  "original_language": "en",
+		  "original_name": "A Mother's Son",
+		  "overview": "A mother suspects that her son could be the killer of a recently found dead girl, and becomes caught in a torturous dilemma of whether to denounce him, or protect him and hide the act.",
+		  "origin_country": [
+			"GB"
+		  ],
+		  "poster_path": "/pvoR5jIDG5MldCoDRm4DWMBlE5d.jpg",
+		  "popularity": 0.012415,
+		  "name": "A Mother's Son",
+		  "vote_average": 6,
+		  "vote_count": 3
+		}
+	  ],
+	  "tv_episode_results": [],
+	  "tv_season_results": []
+	}

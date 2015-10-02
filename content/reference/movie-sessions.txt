@@ -94,3 +94,147 @@ New movie
      webpage:
    Response:
      {"success":true,"redirect":"/movie/357956-renaissance-girl?language=en"}
+
+Lookup Genres (query = actions)
+	Request URL:https://www.themoviedb.org/search/remote/genre?media_type=movie&filter%5Blogic%5D=and&filter%5Bfilters%5D%5B0%5D%5Bvalue%5D=actions&filter%5Bfilters%5D%5B0%5D%5Bfield%5D=name&filter%5Bfilters%5D%5B0%5D%5Boperator%5D=startswith&filter%5Bfilters%5D%5B0%5D%5BignoreCase%5D=true&_=1443502011154
+		decoded:https://www.themoviedb.org/search/remote/genre?media_type=movie&filter[logic]=and&filter[filters][0][value]=actions&filter[filters][0][field]=name&filter[filters][0][operator]=startswith&filter[filters][0][ignoreCase]=true&_=1443502011154
+	Request Method:GET
+	Request Headers:
+		Accept:*/*
+		Accept-Encoding:gzip, deflate, sdch
+		Accept-Language:en-US,en;q=0.8
+		Host:www.themoviedb.org
+		Referer:https://www.themoviedb.org/movie/361913-four-pillars-of-basement/edit?active_nav_item=genres_and_keywords
+		User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+		X-Requested-With:XMLHttpRequest
+	Response:
+		[
+		  {
+			"bson_id": "4bc88aba017a3c122d000001",
+			"id": 28,
+			"name": "Action"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000002",
+			"id": 12,
+			"name": "Adventure"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000003",
+			"id": 16,
+			"name": "Animation"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000004",
+			"id": 35,
+			"name": "Comedy"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000005",
+			"id": 80,
+			"name": "Crime"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000007",
+			"id": 99,
+			"name": "Documentary"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000008",
+			"id": 18,
+			"name": "Drama"
+		  },
+		  {
+			"bson_id": "4c55a6cf7b9aa151f7000006",
+			"id": 10751,
+			"name": "Family"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d00000b",
+			"id": 14,
+			"name": "Fantasy"
+		  },
+		  {
+			"bson_id": "4db1e7017b9aa11f2a00023a",
+			"id": 10769,
+			"name": "Foreign"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d00000c",
+			"id": 36,
+			"name": "History"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d00000d",
+			"id": 27,
+			"name": "Horror"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d00000f",
+			"id": 10402,
+			"name": "Music"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000010",
+			"id": 9648,
+			"name": "Mystery"
+		  },
+		  {
+			"bson_id": "4c55a6bd7b9aa151f3000001",
+			"id": 10749,
+			"name": "Romance"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000012",
+			"id": 878,
+			"name": "Science Fiction"
+		  },
+		  {
+			"bson_id": "4f21715619c2951aca007cf7",
+			"id": 10770,
+			"name": "TV Movie"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000015",
+			"id": 53,
+			"name": "Thriller"
+		  },
+		  {
+			"bson_id": "4c55a6da7b9aa151f4000001",
+			"id": 10752,
+			"name": "War"
+		  },
+		  {
+			"bson_id": "4bc88aba017a3c122d000016",
+			"id": 37,
+			"name": "Western"
+		  }
+		]
+
+Add Genres & Keywords to movie:
+	Request URL:https://www.themoviedb.org/movie/361913-four-pillars-of-basement/remote/genres_and_keywords?translate=false
+	Request Method:POST
+	Request Headers:
+		Accept:application/json, text/javascript, */*; q=0.01
+		Accept-Encoding:gzip, deflate
+		Accept-Language:en-US,en;q=0.8
+		Connection:keep-alive
+		Content-Length:113
+		Content-Type:application/x-www-form-urlencoded; charset=UTF-8
+		Host:www.themoviedb.org
+		Origin:https://www.themoviedb.org
+		Referer:https://www.themoviedb.org/movie/361913-four-pillars-of-basement/edit?active_nav_item=genres_and_keywords
+		User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36
+		X-Requested-With:XMLHttpRequest
+	Form Data (adding Action, Mystery, Thriller):
+		genres%5B%5D=4bc88aba017a3c122d000015&genres%5B%5D=4bc88aba017a3c122d000001&genres%5B%5D=4bc88aba017a3c122d000010
+	Response:
+		{"success":true}
+
+
+		$.ajax({
+			url: 'https://www.themoviedb.org/movie/361913-four-pillars-of-basement/remote/genres_and_keywords?translate=false'
+			method: 'POST'
+		})
+		.done(function(data) { console.log('done'); console.log(data) })
+		.fail(function(data) { console.log('fail'); console.log(data); });
