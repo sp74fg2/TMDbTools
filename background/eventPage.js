@@ -81,19 +81,20 @@ function getMovieInfo(request, sender, sendResponse) {
 		//console.log(imdbHtml);
 		var imdbMovieInfo = {},
 			$imdbHtml = $(replaceSrc(imdbHtml)),
-			taglinesHeader, originalTitlespan;
+			taglinesHeader, originalTitleDiv;
 
 		imdbMovieInfo.imdbId = request.imdbId;
 		// TODO: check for original title, possibly add alternative titles
 		// movie with original title: http://www.imdb.com/title/tt0076101
-		originalTitlespan = $imdbHtml.find('.title-extra');
-		if (originalTitlespan.length > 0) {
+		originalTitleDiv = $imdbHtml.find('.originalTitle');
+		if (originalTitleDiv.length > 0) {
 			// get the text node contents and remove surrounding quotes
-			imdbMovieInfo.title = originalTitlespan.contents().filter(function () {
+			imdbMovieInfo.title = originalTitleDiv.contents().filter(function () {
 				return this.nodeType == 3;
 			}).text().trim().replace(/^"(.+(?="$))"$/, '$1');
 		} else {
-			imdbMovieInfo.title = $imdbHtml.find('h1.header [itemprop="name"]').text();
+			//imdbMovieInfo.title = $imdbHtml.find('h1.header [itemprop="name"]').text();
+			imdbMovieInfo.title = $imdbHtml.find('.title_wrapper h1[itemprop="name"]').text();
 		}
 
 		if ($('#overview-top .infobar').text().indexOf('TV Mini-Series') > -1) {
@@ -115,7 +116,8 @@ function getMovieInfo(request, sender, sendResponse) {
 		if (taglinesHeader) {
 			imdbMovieInfo.tagline = taglinesHeader.nextSibling.nodeValue.trim();
 		}
-		imdbMovieInfo.runtime = $imdbHtml.find('.infobar time[itemprop=duration]').text().replace('min', '').trim();
+
+		imdbMovieInfo.runtime = $imdbHtml.find('.title_wrapper time[itemprop=duration]').text().replace('min', '').trim();
 
 		sendResponse(imdbMovieInfo);
 	}).fail(function (jqXHR, textStatus, errorThrown) {

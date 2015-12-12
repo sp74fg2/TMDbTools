@@ -38,6 +38,7 @@
 			"matches": [ "https://www.themoviedb.org/movie/new*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
+				"vendor/jquery-ui/jquery-ui.min.js",
 				"content/backgroundWrap.js",
 				"content/tmdbapi.js",
 				"content/movie.js"

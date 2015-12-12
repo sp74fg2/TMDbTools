@@ -37,15 +37,25 @@
 		<h2 class="inner">Verify &amp; Import</h2>
 		<div id="error_window" class="error_status hide" style="display: block;"></div>
 
-		<p><strong>Original Title</strong>: <span class="original_title"></span></p>
-		<p><strong>Overview</strong>: <span class="overview"></span></p>
+		<p>
+			<strong>Original Title</strong>: <span class="original_title"></span>
+			<a class="editFormField" title="Edit Original Title"/>
+		</p>
+		<p>
+			<strong>Overview</strong>: <span class="overview"></span>
+			<a class="editFormField" title="Edit Overview"/>
+		</p>
+
 		<p><strong>Genre</strong>: <span class="genre"></span></p>
 		<p><strong>IMDB ID</strong>: <span class="imdb_id"></span></p>
 		<!--<p><strong>Translation Verified</strong>: <span class="translation_verified"></span></p>-->
 		<!--<p><strong>Duplicate Check Verified</strong>: <span class="duplicate_check_verified"></span></p>-->
 		<p><strong>Adult Movie</strong>: <span class="adult"></span></p>
 		<!--<p><strong>Video</strong>: <span class="video"></span></p>-->
-		<p><strong>Tagline</strong>: <span class="tagline"></span></p>
+		<p>
+			<strong>Tagline</strong>: <span class="tagline"></span>
+			<a class="editFormField" title="Edit Tagline" />
+		</p>
 		<p><strong>Runtime</strong>: <span class="runtime"></span></p>
 		<!--<p><strong>Budget</strong>: <span class="budget"></span></p>
 		<p><strong>Revenue</strong>: <span class="revenue"></span></p>-->
@@ -186,5 +196,6 @@
 		</svg>
 	</section>
 </form>
-<!----</div>
-</div>-->
+<div id="editDialogForm">
+	<textarea id="editTextarea" rows="7" cols="42" />
+</div>
