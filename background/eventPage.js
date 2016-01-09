@@ -1,7 +1,9 @@
 'use strict';
 
+var genreLookup;
+
 chrome.runtime.onMessage.addListener(
-	function (request, sender, sendResponse) {
+	function(request, sender, sendResponse) {
 		switch (request.method) {
 			case 'getImdbCredits':
 				getImdbCredits(request, sender, sendResponse);
@@ -21,12 +23,12 @@ function getImdbCredits(request, sender, sendResponse) {
 		url: 'https://www.themoviedb.org/movie/' + request.tmdbId + '/edit' + (request.queryLanguage ? '?language=' + request.queryLanguage : ''),
 		type: 'GET',
 		dataType: 'text'
-	}).done(function (tmdbHtml) {
+	}).done(function(tmdbHtml) {
 		imdbId = $(tmdbHtml).find('#imdb_id').val();
 		if (imdbId) {
 			$.ajax({
 				url: 'http://www.imdb.com/title/' + imdbId + '/fullcredits'
-			}).done(function (imdbHtml) {
+			}).done(function(imdbHtml) {
 				var credits = {
 					cast: [],
 					crew: []
@@ -34,7 +36,7 @@ function getImdbCredits(request, sender, sendResponse) {
 				//imdbHtml = imdbHtml.replace(/<img[^>]*>/g,'');
 				// replace image src attributes with data-src so jQuery can load & parse
 				imdbHtml = replaceSrc(imdbHtml);
-				$(imdbHtml).find('table.cast_list tr.even, table.cast_list tr.odd').each(function () {
+				$(imdbHtml).find('table.cast_list tr.even, table.cast_list tr.odd').each(function() {
 					var castLink, idMatch, memberImdbId, castImg, imageUrl, character, castMember;
 					castLink = $(this).find('td[itemprop=actor] a');
 					if (castLink[0]) {
@@ -77,7 +79,7 @@ function getMovieInfo(request, sender, sendResponse) {
 	$.ajax({
 		url: 'http://www.imdb.com/title/' + request.imdbId
 	})
-	.done(function (imdbHtml) {
+	.done(function(imdbHtml) {
 		//console.log(imdbHtml);
 		var imdbMovieInfo = {},
 			$imdbHtml = $(replaceSrc(imdbHtml)),
@@ -89,12 +91,15 @@ function getMovieInfo(request, sender, sendResponse) {
 		originalTitleDiv = $imdbHtml.find('.originalTitle');
 		if (originalTitleDiv.length > 0) {
 			// get the text node contents and remove surrounding quotes
-			imdbMovieInfo.title = originalTitleDiv.contents().filter(function () {
+			imdbMovieInfo.title = originalTitleDiv.contents().filter(function() {
 				return this.nodeType == 3;
 			}).text().trim().replace(/^"(.+(?="$))"$/, '$1');
 		} else {
 			//imdbMovieInfo.title = $imdbHtml.find('h1.header [itemprop="name"]').text();
-			imdbMovieInfo.title = $imdbHtml.find('.title_wrapper h1[itemprop="name"]').text();
+			imdbMovieInfo.title = $imdbHtml.find('.title_wrapper h1[itemprop="name"]').contents().filter(function() {
+				return this.nodeType == 3;
+			}).text().trim() ||
+				$imdbHtml.find('h1.header [itemprop="name"]').text().trim();
 		}
 
 		if ($('#overview-top .infobar').text().indexOf('TV Mini-Series') > -1) {
@@ -102,13 +107,15 @@ function getMovieInfo(request, sender, sendResponse) {
 		}
 
 		imdbMovieInfo.overview = $imdbHtml.find('div[itemprop=description] p')
-			.contents().filter(function () {
+			.contents().filter(function() {
 				return this.nodeType == 3;
 			}).text().trim();
 
 		imdbMovieInfo.genres = [];
-		$imdbHtml.find('div[itemprop=genre] a').each(function () {
-			imdbMovieInfo.genres.push($(this).text().trim());
+		$imdbHtml.find('div[itemprop=genre] a').each(function() {
+			var imdbGenre = $(this).text().trim();
+			//imdbMovieInfo.genres.push($(this).text().trim());
+			imdbMovieInfo.genres.push(genreLookup[imdbGenre] || imdbGenre);
 		});
 		imdbMovieInfo.isAdult = imdbMovieInfo.genres.indexOf('Adult') > -1;
 
@@ -120,7 +127,7 @@ function getMovieInfo(request, sender, sendResponse) {
 		imdbMovieInfo.runtime = $imdbHtml.find('.title_wrapper time[itemprop=duration]').text().replace('min', '').trim();
 
 		sendResponse(imdbMovieInfo);
-	}).fail(function (jqXHR, textStatus, errorThrown) {
+	}).fail(function(jqXHR, textStatus, errorThrown) {
 		sendResponse({
 			error: 'Loading IMDb page. ' + textStatus + ': ' + errorThrown
 		});
@@ -131,3 +138,7 @@ function getMovieInfo(request, sender, sendResponse) {
 function replaceSrc(html) {
 	return html.replace(/(<img[^>]*)(\s?src)([^>]*>)/g, '$1data-src$3');
 }
+
+genreLookup = {
+	'Sci-Fi': 'Science Fiction'
+};

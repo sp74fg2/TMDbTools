@@ -25,6 +25,7 @@
 				"vendor/jquery-2.1.4.min.js",
 				"vendor/jquery-ui/jquery-ui.min.js",
 				"content/accent-fold.js",
+				"content/backgroundWrap.js",
 				"content/moviecast.js"
 			],
 			"css": [

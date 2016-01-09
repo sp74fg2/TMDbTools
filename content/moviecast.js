@@ -1,8 +1,8 @@
 'use strict';
 
-/*globals accent_fold */
+/*globals accent_fold, getImdbCredits */
 
-var tmdbMovieId = (function () {
+var tmdbMovieId = (function() {
 	var regMatch = /themoviedb\.org\/movie\/(\d+)/.exec(location.href);
 	if (regMatch) {
 		return regMatch[1];
@@ -25,39 +25,108 @@ contentShellHtml += '  <h3>TMDb credits without matching IMDb credit</h3>      <
 contentShellHtml += '  <h3>To Add (IMDb has a credit but TMDb doesn\'t)</h3>   <div id="additions"></div>';
 contentShellHtml += '</div>';
 
+//function compareCast() {
+//	if (tmdbMovieId) {
+//		blockUI();
+//		chrome.runtime.sendMessage({
+//			method: 'getImdbCredits',
+//			tmdbId: tmdbMovieId,
+//			queryLanguage: queryLanguage
+//		}, function (response) {
+//			if (!response.error) {
+//				if (response.credits.cast.length > 0) {
+//					imdbCastCredits = response.credits.cast;
+//					getTMDbCast()
+//						.done(function (data) {
+//							existingCast = data;
+//							existingCastWorking = data.slice(0);
+//							$('div.info').empty().append(contentShellHtml);
+//							$(imdbCastCredits).each(function () {
+//								parseImdbCast(this);
+//							});
+//							addTmdbExtras();
+//							configureElements();
+//						})
+//						.fail(function (errorThrown) {
+//							alert('Error getting TMDb existing cast.  The error returned was: ' + errorThrown);
+//						});
+//				} else {
+//					alert('No cast found on IMDb');
+//				}
+//			} else {
+//				alert(response.error);
+//			}
+//			unblockUI();
+//		});
+//	} else {
+//		alert('Uable to get Movie Id');
+//	}
+//}
+
 function compareCast() {
 	if (tmdbMovieId) {
 		blockUI();
-		chrome.runtime.sendMessage({
-			method: 'getImdbCredits',
-			tmdbId: tmdbMovieId,
-			queryLanguage: queryLanguage
-		}, function (response) {
-			if (!response.error) {
+
+		getImdbCredits(tmdbMovieId, queryLanguage)
+			.done(function(response) {
 				if (response.credits.cast.length > 0) {
 					imdbCastCredits = response.credits.cast;
 					getTMDbCast()
-						.done(function (data) {
+						.done(function(data) {
 							existingCast = data;
 							existingCastWorking = data.slice(0);
-							$('div.info').empty().append(contentShellHtml);
-							$(imdbCastCredits).each(function () {
+							$('section.content').empty().append(contentShellHtml);
+							$(imdbCastCredits).each(function() {
 								parseImdbCast(this);
 							});
 							addTmdbExtras();
 							configureElements();
 						})
-						.fail(function (errorThrown) {
+						.fail(function(errorThrown) {
 							alert('Error getting TMDb existing cast.  The error returned was: ' + errorThrown);
 						});
 				} else {
 					alert('No cast found on IMDb');
 				}
-			} else {
-				alert(response.error);
-			}
-			unblockUI();
-		});
+			})
+			.fail(function(errorResponse) {
+				alert(errorResponse.error);
+			})
+			.always(function() {
+				unblockUI();
+			});
+
+		//chrome.runtime.sendMessage({
+		//	method: 'getImdbCredits',
+		//	tmdbId: tmdbMovieId,
+		//	queryLanguage: queryLanguage
+		//}, function(response) {
+		//	if (!response.error) {
+		//		if (response.credits.cast.length > 0) {
+		//			imdbCastCredits = response.credits.cast;
+		//			getTMDbCast()
+		//				.done(function(data) {
+		//					existingCast = data;
+		//					existingCastWorking = data.slice(0);
+		//					$('div.info').empty().append(contentShellHtml);
+		//					$(imdbCastCredits).each(function() {
+		//						parseImdbCast(this);
+		//					});
+		//					addTmdbExtras();
+		//					configureElements();
+		//				})
+		//				.fail(function(errorThrown) {
+		//					alert('Error getting TMDb existing cast.  The error returned was: ' + errorThrown);
+		//				});
+		//		} else {
+		//			alert('No cast found on IMDb');
+		//		}
+		//	} else {
+		//		alert(response.error);
+		//	}
+		//	unblockUI();
+		//});
+
 	} else {
 		alert('Uable to get Movie Id');
 	}
@@ -71,16 +140,16 @@ function getTMDbCast() {
 			'Accept': 'application/json, text/javascript, */*; q=0.01',
 			'Accept-Language': 'en-US,en;q=0.8'
 		}
-	}).done(function (s) {
+	}).done(function(s) {
 		defer.resolve(s);
-	}).fail(function (jqXHR, textStatus, errorThrown) {
+	}).fail(function(jqXHR, textStatus, errorThrown) {
 		defer.reject(errorThrown);
 	});
 	return defer;
 }
 
 function parseImdbCast(imdbCastCredit) {
-	var tmdbExistingCredit = $(existingCastWorking).filter(function (index, credit) {
+	var tmdbExistingCredit = $(existingCastWorking).filter(function(index, credit) {
 		return accent_fold(credit.name) === accent_fold(imdbCastCredit.name);
 	})[0],
 	  imdbCreditedAsMatch = /(\(as\s+(.+)\))/.exec(imdbCastCredit.character);
@@ -109,7 +178,7 @@ function parseImdbCast(imdbCastCredit) {
 }
 
 function removeCreditFromArray(array, credit) {
-	$.each(array, function (index, result) {
+	$.each(array, function(index, result) {
 		if (credit.name === result.name) {
 			array.splice(index, 1);
 			return false;
@@ -125,7 +194,7 @@ function addExactMatchCast(tmdbCredit, imdbCredit) {
 	$workingDiv = $('<div class="working"></div>').appendTo($matchesSection);
 
 	getTmdbPersonExtIdsForm(tmdbCredit)
-	  .done(function ($extIdsForm) {
+	  .done(function($extIdsForm) {
 	  	var $tmdbImdbIdInput = $extIdsForm.find('input:text[name=imdb_id]'),
 		  tmdbImdbId = $tmdbImdbIdInput.val().trim();
 	  	if (tmdbImdbId !== imdbCredit.imdbId) {
@@ -139,17 +208,17 @@ function addExactMatchCast(tmdbCredit, imdbCredit) {
 				  .append('<input type="hidden" name="personName" value="' + tmdbCredit.name + '">')
 				  .append('<input type="hidden" name="personExtIdsUrl" value="https://www.themoviedb.org/person/' + tmdbCredit.url + '/remote/external_ids?translate=false">')
 				  .append('<input type="hidden" name="formData" value="' + $extIdsForm.serialize() + '">')
-				  .click(function () {
+				  .click(function() {
 				  	$(this).toggleClass('ui-selected');
 				  	$matchesSection.attr('noselection', $matchesSection.find('div.ui-selected').length === 0);
 				  });
 	  		}
 	  	}
 	  })
-	  .fail(function (data) {
+	  .fail(function(data) {
 	  	$matchesSection.append('<p style="margin-left:10px">Error checking IMDb Id: ' + data + '</p>');
 	  })
-	  .always(function () {
+	  .always(function() {
 	  	$workingDiv.remove();
 	  });
 }
@@ -162,9 +231,9 @@ function getTmdbPersonExtIdsForm(tmdbCredit) {
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 			'Accept-Language': 'en-US,en;q=0.8'
 		}
-	}).done(function (s) {
+	}).done(function(s) {
 		defer.resolve($(s).find('#external_ids_form'));
-	}).fail(function (jqXHR, textStatus, errorThrown) {
+	}).fail(function(jqXHR, textStatus, errorThrown) {
 		defer.reject(textStatus + ': ' + errorThrown);
 	});
 	return defer;
@@ -184,11 +253,11 @@ function addAdditionalCastMember(imdbCredit) {
 	imdbCastHtml += '<div style="clear:both;"></div>';
 	$additionSection.append(imdbCastHtml);
 
-	$additionSection.find('p a.searchAgain').click(function () {
+	$additionSection.find('p a.searchAgain').click(function() {
 		searchAgainClick(imdbCredit.creditedAs);
 	});
 	$additionSection.find('a.searchAgain.mainName').hide()
-		.click(function () {
+		.click(function() {
 			searchAgainClick(imdbCredit.name);
 		});
 	$additionSection.find('a.searchAgain').attr('title', 'refresh search using this name');
@@ -218,9 +287,9 @@ function searchAdditionalCastMember($additionSection, name) {
 	lookupUrl += '&_=' + Math.round(new Date().getTime()).toString();
 	$.ajax({
 		url: lookupUrl
-	}).done(function (data) {
+	}).done(function(data) {
 		$workingDiv.remove();
-		$(data).each(function () {
+		$(data).each(function() {
 			var existingPersonInCredits, searchResultHtml,
 				searchResultId = this.id;
 
@@ -245,7 +314,7 @@ function searchAdditionalCastMember($additionSection, name) {
 			//  names are lower priority and therefore lower in the list.
 			$searchResultDiv.find('a.creditName span').text(this.name)
 				.addClass(this.name === name ? 'suggested' : '')
-				.click(function (event) {
+				.click(function(event) {
 					// so clicking the link doesn't toggle selection
 					event.stopPropagation();
 				});
@@ -268,7 +337,7 @@ function searchAdditionalCastMember($additionSection, name) {
 			$searchResultDiv.find('input[name=profile_path]').val(this.profile_path);
 			$searchResultDiv.find('input[name=name]').val(this.id !== 0 ? this.name : name);
 
-			existingPersonInCredits = $(existingCast).filter(function () {
+			existingPersonInCredits = $(existingCast).filter(function() {
 				return this.id === searchResultId;
 			})[0];
 			if (existingPersonInCredits) {
@@ -276,7 +345,7 @@ function searchAdditionalCastMember($additionSection, name) {
 					.append('</br><span class="ui-state-error">This person is already a cast member!</span>');
 			}
 			// make selectable
-			$($searchResultDiv).click(function () {
+			$($searchResultDiv).click(function() {
 				$(this).toggleClass('ui-selected').siblings().removeClass('ui-selected');
 				$additionSection.attr('noselection', $additionSection.find('div.ui-selected').length === 0);
 			});
@@ -311,7 +380,7 @@ function addExistingCastWithDiffChar(imdbCredit, tmdbCredit) {
 	$tmdbDiv.find('p').text(tmdbCredit.name + ' as ' + tmdbCredit.character);
 	$tmdbDiv.find('p').after('<p class="isSelected">(No change will be made)<p>');
 	$tmdbDiv.find('p:last').after('<p class="isNotSelected">Click here to keep the credit as-is<p>');
-	$tmdbDiv.click(function () {
+	$tmdbDiv.click(function() {
 		$(this).toggleClass('ui-selected').siblings().removeClass('ui-selected');
 		$differencesSection.attr('noselection', $differencesSection.find('div.ui-selected').length === 0);
 	});
@@ -324,7 +393,7 @@ function addExistingCastWithDiffChar(imdbCredit, tmdbCredit) {
 	$imdbDiv.find('p:last').after('<p class="isNotSelected">Click here to update the credit using this character name<p>');
 	tmdbCredit.character = imdbCredit.character;
 	$('<input type=hidden name="formData">').appendTo($imdbDiv).val($.param(tmdbCredit));
-	$imdbDiv.click(function () {
+	$imdbDiv.click(function() {
 		$(this).toggleClass('ui-selected').siblings().removeClass('ui-selected');
 		$differencesSection.attr('noselection', $differencesSection.find('div.ui-selected').length === 0);
 	});
@@ -334,7 +403,7 @@ function addTmdbExtras() {
 	var $tmdbExtrasSection;
 	if (existingCastWorking.length > 0) {
 		$tmdbExtrasSection = $('<section></section>').appendTo('#tmdbExtras');
-		$(existingCastWorking).each(function () {
+		$(existingCastWorking).each(function() {
 			$tmdbExtrasSection.append(this.name + ' as ' + this.character + '</br>');
 		});
 	}
@@ -342,7 +411,7 @@ function addTmdbExtras() {
 
 function configureElements() {
 	//remove empty main sections
-	$('#accordion > div').each(function () {
+	$('#accordion > div').each(function() {
 		if ($(this).find('section').length === 0) {
 			$(this).prev('h3').remove();
 			$(this).remove();
@@ -356,7 +425,7 @@ function configureElements() {
 	// add submit buttons
 	$('<input id="submit" type="submit" value="Submit" class="submitCreditsButton">')
 		.insertAfter('#accordion')
-		.click(function () {
+		.click(function() {
 			doSubmit();
 		});
 
@@ -392,7 +461,7 @@ function doSubmit() {
 
 	// additions
 	// get all configured additions, add to results list, and call method to add
-	$configuredAdditions.each(function (index) {
+	$configuredAdditions.each(function(index) {
 		var $resultItemDiv = $(resultsItemTemplate).appendTo('.resultsPage'),
 			name = $(this).find('.ui-selected input[name=name]').val(),
 			character = $(this).find('input:text[name=character]').val(),
@@ -403,7 +472,7 @@ function doSubmit() {
 		formData = $(this).find('.ui-selected input:hidden').serialize();
 		$resultItemDiv.find('div.item-title').text(itemTitle);
 
-		window.setTimeout(function () {
+		window.setTimeout(function() {
 			addOrUpdateCastCredit($resultItemDiv, formData, isNewPerson);
 		}, index * 300);
 	});
@@ -411,21 +480,21 @@ function doSubmit() {
 
 	// differences
 	// get all configured character name updates, add to results list, and call method to update
-	$configuredDifferences.each(function (index) {
+	$configuredDifferences.each(function(index) {
 		var $resultItemDiv = $(resultsItemTemplate).appendTo('.resultsPage'),
 			itemTitle = 'Update: ' + $(this).find('div p:first').text(),
 			formData = $(this).find('input:hidden').val();
 
 		$resultItemDiv.find('div.item-title').text(itemTitle);
 
-		window.setTimeout(function () {
+		window.setTimeout(function() {
 			addOrUpdateCastCredit($resultItemDiv, formData, false);
 		}, index * 300);
 	});
 	// end differences
 
 	// exact matches, add IMDb ID
-	$configuredAddImdbIds.each(function (index) {
+	$configuredAddImdbIds.each(function(index) {
 		var $resultItemDiv = $(resultsItemTemplate).appendTo('.resultsPage'),
 			personName = $(this).find('input:hidden[name=personName]').val(),
 			itemTitle = 'Add IMDb Id to ' + personName,
@@ -434,7 +503,7 @@ function doSubmit() {
 
 		$resultItemDiv.find('div.item-title').text(itemTitle);
 
-		window.setTimeout(function () {
+		window.setTimeout(function() {
 			addPersonImdbId($resultItemDiv, formData, personExtIdsUrl);
 		}, index * 300);
 
@@ -459,7 +528,7 @@ function addOrUpdateCastCredit($resultItemDiv, formData, isNewPerson) {
 			'Accept-Language': 'en-US,en;q=0.8',
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 		}
-	}).done(function (data) {
+	}).done(function(data) {
 		if (data.success) {
 			$resultItemDiv.find('.item-message').text(successMsg);
 			$resultItemDiv.removeClass('todo');
@@ -469,11 +538,11 @@ function addOrUpdateCastCredit($resultItemDiv, formData, isNewPerson) {
 			$resultItemDiv.removeClass('todo');
 			$resultItemDiv.addClass('resultError');
 		}
-	}).fail(function (jqXHR, textStatus, errorThrown) {
+	}).fail(function(jqXHR, textStatus, errorThrown) {
 		$resultItemDiv.find('.item-message').text(errorThrown);
 		$resultItemDiv.removeClass('todo');
 		$resultItemDiv.addClass('resultError');
-	}).always(function () {
+	}).always(function() {
 		checkIfDoneUpdating();
 	});
 }
@@ -488,7 +557,7 @@ function addPersonImdbId($resultItemDiv, formData, personExtIdsUrl) {
 			'Accept-Language': 'en-US,en;q=0.8',
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 		}
-	}).done(function (data) {
+	}).done(function(data) {
 		if (data.success) {
 			$resultItemDiv.find('.item-message').text('Added successfully');
 			$resultItemDiv.removeClass('todo');
@@ -498,11 +567,11 @@ function addPersonImdbId($resultItemDiv, formData, personExtIdsUrl) {
 			$resultItemDiv.removeClass('todo');
 			$resultItemDiv.addClass('resultError');
 		}
-	}).fail(function (jqXHR, textStatus, errorThrown) {
+	}).fail(function(jqXHR, textStatus, errorThrown) {
 		$resultItemDiv.find('.item-message').text(textStatus + ': ' + errorThrown);
 		$resultItemDiv.removeClass('todo');
 		$resultItemDiv.addClass('resultError');
-	}).always(function () {
+	}).always(function() {
 		checkIfDoneUpdating();
 	});
 }
@@ -542,6 +611,7 @@ function imdbMediumImageUrl(url) {
 }
 
 $('a.k-button:contains(Sort)').after('<a class="k-button" id="fromIMDbButton">Compare with IMDb</a>');
-$('#fromIMDbButton').click(function () {
+$('#fromIMDbButton').click(function(e) {
+	e.preventDefault();
 	compareCast();
 });
