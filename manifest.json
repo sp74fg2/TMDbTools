@@ -24,7 +24,7 @@
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
 				"vendor/jquery-ui/jquery-ui.min.js",
-				"content/accent-fold.js",
+				"content/resources/accent-fold.js",
 				"content/backgroundWrap.js",
 				"content/moviecast.js"
 			],
@@ -46,6 +46,17 @@
 			],
 			"css": [
 				"content/movie.css"
+			]
+		},
+		{
+			"matches": [
+				"https://www.themoviedb.org/movie/*/edit?active_nav_item=alternative_titles*",
+				"https://www.themoviedb.org/movie/*/edit?active_nav_item=release_information*"
+			],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/resources/ISO-3166.js",
+				"content/countryName.js"
 			]
 		},
 		{

@@ -15,7 +15,7 @@ var tmdbMovieId = (function() {
 	imdbCastCredits = [],
 	contentShellHtml,
 	castUrl = location.origin + location.pathname.replace('/edit', '') + '/remote/cast?translate=false',
-	queryLanguage = $('#language').val(),
+	queryLanguage = $('#translation_selector').val(),
 	resultsItemTemplate;
 
 contentShellHtml = ' <div id="accordion">';
@@ -355,6 +355,7 @@ function searchAdditionalCastMember($additionSection, name) {
 
 // add to output a credit where TMDb & IMDb names match but character is different
 function addExistingCastWithDiffChar(imdbCredit, tmdbCredit) {
+	console.log(tmdbCredit);
 	var $differencesSection = $('<section noselection="true"></section>').appendTo('#differences'),
 		itemTemplate;
 	// //set hidden field values

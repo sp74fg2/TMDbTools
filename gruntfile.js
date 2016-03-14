@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		jshint: {
 			// define the files to lint
-			files: ['background/*.js', 'content/*.js', 'gruntfile.js'],
+			files: ['background/*.js', 'content/*.js', 'content/resources/*.js', 'gruntfile.js'],
 			// configure JSHint (documented at http://www.jshint.com/docs/)
 			options: {
 				jshintrc: true,

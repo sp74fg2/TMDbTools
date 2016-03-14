@@ -47,7 +47,9 @@ function getImdbCredits(request, sender, sendResponse) {
 					}
 					castImg = $(this).find('td.primary_photo img');
 					if (castImg[0]) {
-						imageUrl = castImg.attr('loadlate') || castImg.attr('data-src');
+						imageUrl = castImg.attr('loadlate') || castImg.attr('data-src') ||
+							'http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/32x44/name-2138558783._CB379389446_.png';
+						console.log(imageUrl);
 					}
 					character = $(this).find('td.character').text()
 						.replace(/\/ .../, '')
