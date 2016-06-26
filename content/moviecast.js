@@ -13,10 +13,11 @@ var tmdbMovieId = (function() {
 	existingCastWorking = [],
 	existingCast = [],
 	imdbCastCredits = [],
-	contentShellHtml,
 	castUrl = location.origin + location.pathname.replace('/edit', '') + '/remote/cast?translate=false',
 	queryLanguage = $('#translation_selector').val(),
-	resultsItemTemplate;
+	resultsItemTemplate,
+	contentShellHtml,
+	noImagePortraitSvg = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 300 450" xml:space="preserve" style="width:45px;float:left;"><rect width="300" height="450" style="fill:#DBDBDB;"/><path  style="fill:#B5B5B5;" d="M128.3 202.3c0 7-5.7 12.7-12.7 12.7 -7 0-12.7-5.7-12.7-12.7s5.7-12.7 12.7-12.7C122.7 189.7 128.3 195.3 128.3 202.3zM220 171.5v106.8c-2 2-2.8 2.8-4.8 4.8h-130c-2-2-3.3-2.8-5.3-4.8V171.5c2-2 3.3-3.5 5.3-4.5h130C217.2 168 218 169.5 220 171.5zM92 179v86.6l35.6-23.5c5.1 1.6 31.2 17.9 33.1 15.9 3.3-3.5-15.8-22.3-15.8-22.3s24.5-27.8 32-27.8c7.2 0 18.8 13.9 31.1 26.2V179H92z"/></svg>';
 
 contentShellHtml = ' <div id="accordion">';
 contentShellHtml += '  <h3>Matching credits with different character names</h3><div id="differences"></div>';
@@ -322,16 +323,15 @@ function searchAdditionalCastMember($additionSection, name) {
 				$searchResultDiv.find('a.creditName span').unwrap();
 			} else {
 				$searchResultDiv.find('a.creditName')
-					.attr('href', this.url)
+					.attr('href', location.origin + '/person/' + this.id)
 					.attr('target', '_blank');
 			}
 			$searchResultDiv.find('span.known_for').text(this.known_for);
-
-			$searchResultDiv.find('img').attr('src',
-				this.profile_path ?
-				'https://image.tmdb.org/t/p/w45' + this.profile_path :
-				'https://d3a8mw37cqal2z.cloudfront.net/images/no-poster-w45.jpg');
-
+			if (this.profile_path) {
+				$searchResultDiv.find('img').attr('src', 'https://image.tmdb.org/t/p/w45' + this.profile_path);
+			} else {
+				$searchResultDiv.find('img').replaceWith(noImagePortraitSvg);
+			}
 			$searchResultDiv.find('input[name=id]').val(this.id);
 			$searchResultDiv.find('input[name=bson_id]').val(this.bson_id);
 			$searchResultDiv.find('input[name=profile_path]').val(this.profile_path);
@@ -375,9 +375,11 @@ function addExistingCastWithDiffChar(imdbCredit, tmdbCredit) {
 
 	var $tmdbDiv = $(itemTemplate).appendTo($differencesSection)
 		.addClass('tmdb selectable');
-	$tmdbDiv.find('img').attr('src', tmdbCredit.profile_path ?
-		'https://image.tmdb.org/t/p/w45' + tmdbCredit.profile_path :
-		'https://d3a8mw37cqal2z.cloudfront.net/images/no-poster-w45.jpg');
+	if (tmdbCredit.profile_path) {
+		$tmdbDiv.find('img').attr('src', 'https://image.tmdb.org/t/p/w45' + tmdbCredit.profile_path);
+	} else {
+		$tmdbDiv.find('img').replaceWith(noImagePortraitSvg);
+	}
 	$tmdbDiv.find('p').text(tmdbCredit.name + ' as ' + tmdbCredit.character);
 	$tmdbDiv.find('p').after('<p class="isSelected">(No change will be made)<p>');
 	$tmdbDiv.find('p:last').after('<p class="isNotSelected">Click here to keep the credit as-is<p>');
