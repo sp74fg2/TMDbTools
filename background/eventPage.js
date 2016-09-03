@@ -34,7 +34,7 @@ function getImdbCredits(request, sender, sendResponse) {
 					crew: []
 				};
 				//imdbHtml = imdbHtml.replace(/<img[^>]*>/g,'');
-				// replace image src attributes with data-src so jQuery can load & parse
+				// replace image 'src' attributes with 'data-src' so jQuery can load & parse
 				imdbHtml = replaceSrc(imdbHtml);
 				$(imdbHtml).find('table.cast_list tr.even, table.cast_list tr.odd').each(function() {
 					var castLink, idMatch, memberImdbId, castImg, imageUrl, character, castMember;
@@ -136,7 +136,7 @@ function getMovieInfo(request, sender, sendResponse) {
 	});
 }
 
-// replace image src attributes with data-src so jQuery can load & parse
+// replace image 'src' attributes with 'data-src' so jQuery can load & parse
 function replaceSrc(html) {
 	return html.replace(/(<img[^>]*)(\s?src)([^>]*>)/g, '$1data-src$3');
 }
@@ -144,3 +144,20 @@ function replaceSrc(html) {
 genreLookup = {
 	'Sci-Fi': 'Science Fiction'
 };
+
+// Context Menu
+
+var contextMenuClickHandler = function(info) {
+	if (info.selectionText) {
+		var tmdSearchUrl = 'https://www.themoviedb.org/search?query=' + encodeURI(info.selectionText);
+		chrome.tabs.create({
+			'url': tmdSearchUrl
+		});
+	}
+};
+
+chrome.contextMenus.create({
+	'title': 'TMDb search',
+	'contexts': ['selection', 'editable'],
+	'onclick': contextMenuClickHandler
+});

@@ -1,11 +1,12 @@
 {
 	"manifest_version": 2,
 	"name": "TMDb Tools",
-	"description": "Additional tools for TMDb, includes tools to help import data from IMDb.",
+	"description": "Tools for TMDb, includes tools to help import data from IMDb.",
 	"version": "0.1.1",
 
 	"permissions": [
 		"tabs",
+		"contextMenus",
 		"http://www.imdb.com/"
 	],
 
@@ -13,8 +14,7 @@
 		"scripts": [
 			"vendor/jquery-2.1.4.min.js",
 			"background/eventPage.js"
-		],
-		"persistent": false
+		]
 	},
 
 	"content_scripts": [
@@ -68,6 +68,8 @@
 	],
 
 	"icons": {
+		"19": "icon.png",
+		"38": "icon38.png",
 		"48": "icon48.png",
 		"128": "icon128.png"
 	},

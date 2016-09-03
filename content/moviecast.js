@@ -9,7 +9,7 @@ var tmdbMovieId = (function() {
 	}
 	return null;
 }()),
-	movieName = $('h2').text(),
+	movieName = $('h1').text(),
 	existingCastWorking = [],
 	existingCast = [],
 	imdbCastCredits = [],
