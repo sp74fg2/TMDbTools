@@ -14,7 +14,7 @@ var tmdbMovieId = (function() {
 	existingCast = [],
 	imdbCastCredits = [],
 	castUrl = location.origin + location.pathname.replace('/edit', '') + '/remote/cast?translate=false',
-	queryLanguage = $('#translation_selector').val(),
+	queryLanguage = $('#edit_translation_selector').val(),
 	resultsItemTemplate,
 	contentShellHtml,
 	noImagePortraitSvg = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" viewBox="0 0 300 450" xml:space="preserve" style="width:45px;float:left;"><rect width="300" height="450" style="fill:#DBDBDB;"/><path  style="fill:#B5B5B5;" d="M128.3 202.3c0 7-5.7 12.7-12.7 12.7 -7 0-12.7-5.7-12.7-12.7s5.7-12.7 12.7-12.7C122.7 189.7 128.3 195.3 128.3 202.3zM220 171.5v106.8c-2 2-2.8 2.8-4.8 4.8h-130c-2-2-3.3-2.8-5.3-4.8V171.5c2-2 3.3-3.5 5.3-4.5h130C217.2 168 218 169.5 220 171.5zM92 179v86.6l35.6-23.5c5.1 1.6 31.2 17.9 33.1 15.9 3.3-3.5-15.8-22.3-15.8-22.3s24.5-27.8 32-27.8c7.2 0 18.8 13.9 31.1 26.2V179H92z"/></svg>';
@@ -25,44 +25,6 @@ contentShellHtml += '  <h3>Matches (TMDb & IMDb match exactly)</h3>            <
 contentShellHtml += '  <h3>TMDb credits without matching IMDb credit</h3>      <div id="tmdbExtras"></div>';
 contentShellHtml += '  <h3>To Add (IMDb has a credit but TMDb doesn\'t)</h3>   <div id="additions"></div>';
 contentShellHtml += '</div>';
-
-//function compareCast() {
-//	if (tmdbMovieId) {
-//		blockUI();
-//		chrome.runtime.sendMessage({
-//			method: 'getImdbCredits',
-//			tmdbId: tmdbMovieId,
-//			queryLanguage: queryLanguage
-//		}, function (response) {
-//			if (!response.error) {
-//				if (response.credits.cast.length > 0) {
-//					imdbCastCredits = response.credits.cast;
-//					getTMDbCast()
-//						.done(function (data) {
-//							existingCast = data;
-//							existingCastWorking = data.slice(0);
-//							$('div.info').empty().append(contentShellHtml);
-//							$(imdbCastCredits).each(function () {
-//								parseImdbCast(this);
-//							});
-//							addTmdbExtras();
-//							configureElements();
-//						})
-//						.fail(function (errorThrown) {
-//							alert('Error getting TMDb existing cast.  The error returned was: ' + errorThrown);
-//						});
-//				} else {
-//					alert('No cast found on IMDb');
-//				}
-//			} else {
-//				alert(response.error);
-//			}
-//			unblockUI();
-//		});
-//	} else {
-//		alert('Uable to get Movie Id');
-//	}
-//}
 
 function compareCast() {
 	if (tmdbMovieId) {
@@ -76,7 +38,7 @@ function compareCast() {
 						.done(function(data) {
 							existingCast = data;
 							existingCastWorking = data.slice(0);
-							$('section.content').empty().append(contentShellHtml);
+							$('#main section.content').empty().append(contentShellHtml);
 							$(imdbCastCredits).each(function() {
 								parseImdbCast(this);
 							});
@@ -96,37 +58,6 @@ function compareCast() {
 			.always(function() {
 				unblockUI();
 			});
-
-		//chrome.runtime.sendMessage({
-		//	method: 'getImdbCredits',
-		//	tmdbId: tmdbMovieId,
-		//	queryLanguage: queryLanguage
-		//}, function(response) {
-		//	if (!response.error) {
-		//		if (response.credits.cast.length > 0) {
-		//			imdbCastCredits = response.credits.cast;
-		//			getTMDbCast()
-		//				.done(function(data) {
-		//					existingCast = data;
-		//					existingCastWorking = data.slice(0);
-		//					$('div.info').empty().append(contentShellHtml);
-		//					$(imdbCastCredits).each(function() {
-		//						parseImdbCast(this);
-		//					});
-		//					addTmdbExtras();
-		//					configureElements();
-		//				})
-		//				.fail(function(errorThrown) {
-		//					alert('Error getting TMDb existing cast.  The error returned was: ' + errorThrown);
-		//				});
-		//		} else {
-		//			alert('No cast found on IMDb');
-		//		}
-		//	} else {
-		//		alert(response.error);
-		//	}
-		//	unblockUI();
-		//});
 
 	} else {
 		alert('Uable to get Movie Id');
@@ -226,6 +157,7 @@ function addExactMatchCast(tmdbCredit, imdbCredit) {
 
 function getTmdbPersonExtIdsForm(tmdbCredit) {
 	var defer = $.Deferred();
+	console.log(tmdbCredit);
 	$.ajax({
 		url: 'https://www.themoviedb.org/person/' + tmdbCredit.url + '/edit?active_nav_item=external_ids',
 		headers: {
