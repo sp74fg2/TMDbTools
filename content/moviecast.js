@@ -157,7 +157,10 @@ function addExactMatchCast(tmdbCredit, imdbCredit) {
 
 function getTmdbPersonExtIdsForm(tmdbCredit) {
 	var defer = $.Deferred();
-	console.log(tmdbCredit);
+	//console.log(tmdbCredit);
+	//$.get('//www.themoviedb.org/translate/person/' + tmdbCredit.url + '/add?language=en-US&_=' + new Date().getTime())
+	//	.always(function() {
+	//		console.log('always in getTmdbPersonExtIdsForm $.get function');
 	$.ajax({
 		url: 'https://www.themoviedb.org/person/' + tmdbCredit.url + '/edit?active_nav_item=external_ids',
 		headers: {
@@ -167,9 +170,15 @@ function getTmdbPersonExtIdsForm(tmdbCredit) {
 	}).done(function(s) {
 		defer.resolve($(s).find('#external_ids_form'));
 	}).fail(function(jqXHR, textStatus, errorThrown) {
+		console.log('jqXHR:');
+		console.log(jqXHR);
 		defer.reject(textStatus + ': ' + errorThrown);
 	});
 	return defer;
+	//})
+	//.fail(function() {
+	//	console.log('fail in getTmdbPersonExtIdsForm $.get function');
+	//});
 }
 
 function addAdditionalCastMember(imdbCredit) {

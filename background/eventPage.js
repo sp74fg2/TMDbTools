@@ -149,7 +149,7 @@ genreLookup = {
 
 var contextMenuClickHandler = function(info) {
 	if (info.selectionText) {
-		var tmdSearchUrl = 'https://www.themoviedb.org/search?query=' + encodeURI(info.selectionText);
+		var tmdSearchUrl = 'https://www.themoviedb.org/search?query=' + encodeURIComponent(info.selectionText);
 		chrome.tabs.create({
 			'url': tmdSearchUrl
 		});
