@@ -6,8 +6,6 @@
 		"$": false,
 		"console": false,
 		"chrome": false,
-		"require": false,
-		"define": false,
 		"alert": false,
 		"toastr": false
 	},

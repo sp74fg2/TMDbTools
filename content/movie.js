@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 /* globals lookupIMDbId, getImdbMovieInfo, duplicateCheck, newMovie, addMovieGenres */
 
