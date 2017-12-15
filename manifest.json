@@ -19,7 +19,7 @@
 
 	"content_scripts": [
 		{
-			"matches": [ "https://www.themoviedb.org/movie/*active_nav_item=cast*" ],
+			"matches": [ "*://*.themoviedb.org/movie/*active_nav_item=cast*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
 				"vendor/jquery-ui/jquery-ui.min.js",
@@ -35,7 +35,7 @@
 			]
 		},
 		{
-			"matches": [ "https://www.themoviedb.org/movie/new*" ],
+			"matches": [ "*://*.themoviedb.org/movie/new*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
 				"vendor/jquery-ui/jquery-ui.min.js",
@@ -52,8 +52,8 @@
 		},
 		{
 			"matches": [
-				"https://www.themoviedb.org/movie/*/edit?active_nav_item=alternative_titles*",
-				"https://www.themoviedb.org/movie/*/edit?active_nav_item=release_information*"
+				"*://*.themoviedb.org/movie/*/edit?active_nav_item=alternative_titles*",
+				"*://*.themoviedb.org/movie/*/edit?active_nav_item=release_information*"
 			],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
@@ -62,7 +62,7 @@
 			]
 		},
 		{
-			"matches": [ "http://www.imdb.com/title/*" ],
+			"matches": [ "*://*.imdb.com/title/*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
 				"content/imdb.js"

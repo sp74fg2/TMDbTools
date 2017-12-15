@@ -244,8 +244,8 @@ function importMovie() {
 			if (movieIdMatch) {
 				movieId = movieIdMatch[1];
 				addMovieGenres(movieId, $('.genre').text()).done(function(addMovieGenresData) {
-					console.log('addMovieGenresData: ');
-					console.log(addMovieGenresData);
+					//console.log('addMovieGenresData: ');
+					//console.log(addMovieGenresData);
 					$('#importResults div.result.addGenres').addClass('complete');
 					if (addMovieGenresData) {
 						$('#importResults div.result.addGenres p').text('Some genres were added, ' + addMovieGenresData);

@@ -48,7 +48,7 @@
 	}
 
 .ui-selected {
-	cursor: url("chrome-extension://__MSG_@@extension_id__/minus-icon.png"), auto;
+	cursor: url("chrome-extension://__MSG_@@extension_id__/icons/minus-icon.png"), auto;
 	background: #D3E59C;
 	border-radius: 2px;
 }
