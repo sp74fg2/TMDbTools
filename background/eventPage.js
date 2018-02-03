@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 var genreLookup;
 
@@ -71,7 +71,7 @@ function getImdbCredits(request, sender, sendResponse) {
 			});
 		} else {
 			sendResponse({
-				error: 'No IMDb Id found. Enter IMDb Id in Primary Facts first.'
+				error: 'No IMDb Id found. Enter IMDb Id in the \'External IDs\' section first.'
 			});
 		}
 	});

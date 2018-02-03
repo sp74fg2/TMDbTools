@@ -69,7 +69,8 @@ function compareCast() {
 				}
 			})
 			.fail(function (errorResponse) {
-				alert(errorResponse.error);
+				//console.log('movieCast.compareCast.getImdbCredits.fail errorResponse: ' + errorResponse);
+				alert(errorResponse);
 			})
 			.always(function () {
 				unblockUI();
@@ -349,7 +350,7 @@ function addExistingCastWithDiffChar(imdbCredit, tmdbCredit) {
 
 	itemTemplate = ' <div class="person_results">';
 	itemTemplate += '  <img width="45" style="float:left">';
-	itemTemplate += '  <div><p></p></div>';
+	itemTemplate += '  <div class="creditInfo"><p></p></div>';
 	itemTemplate += '</div>';
 
 	var $tmdbDiv = $(itemTemplate).appendTo($differencesSection)

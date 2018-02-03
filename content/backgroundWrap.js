@@ -8,7 +8,7 @@ function getImdbMovieInfo(imdbId) {
 	chrome.runtime.sendMessage({
 		method: 'getMovieInfo',
 		imdbId: imdbId
-	}, function(movieInfo) {
+	}, function (movieInfo) {
 		if (movieInfo.error) {
 			defer.reject(movieInfo.error);
 		} else {
@@ -25,7 +25,8 @@ function getImdbCredits(tmdbMovieId, queryLanguage) {
 		method: 'getImdbCredits',
 		tmdbId: tmdbMovieId,
 		queryLanguage: queryLanguage
-	}, function(imdbInfo) {
+	}, function (imdbInfo) {
+		//console.log('backgroundWrap.getImdbCredits.sendMessage imdbInfo.error:' + imdbInfo.error);
 		if (imdbInfo.error) {
 			defer.reject(imdbInfo.error);
 		} else {
