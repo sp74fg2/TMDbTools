@@ -62,6 +62,13 @@
 			]
 		},
 		{
+			"matches": [ "*://*.themoviedb.org/movie/*/edit?active_nav_item=release_information*" ],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/releaseInfo.js"
+			]
+		},
+		{
 			"matches": [ "*://*.imdb.com/title/*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
