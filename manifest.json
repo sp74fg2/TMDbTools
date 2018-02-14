@@ -69,6 +69,13 @@
 			]
 		},
 		{
+					"matches": [ "*://*.themoviedb.org/network" ],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/networkSearch.js"
+			]
+		},
+		{
 			"matches": [ "*://*.imdb.com/title/*" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
