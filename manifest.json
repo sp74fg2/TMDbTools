@@ -2,11 +2,13 @@
 	"manifest_version": 2,
 	"name": "TMDb Tools",
 	"description": "Tools for TMDb, includes tools to help import data from IMDb.",
-	"version": "0.1.1",
+	"version": "0.3.0",
+	"options_page": "pages/options.html",
 
 	"permissions": [
 		"tabs",
 		"contextMenus",
+		"storage",
 		"http://www.imdb.com/"
 	],
 
@@ -18,6 +20,13 @@
 	},
 
 	"content_scripts": [
+		{
+			"matches": [ "*://*.themoviedb.org/*" ],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/all.js"
+			]
+		},
 		{
 			"matches": [ "*://*.themoviedb.org/movie/*active_nav_item=cast*" ],
 			"js": [
@@ -69,10 +78,34 @@
 			]
 		},
 		{
-					"matches": [ "*://*.themoviedb.org/network" ],
+			"matches": [ "*://*.themoviedb.org/*/edit?active_nav_item=external_ids*" ],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/externalids.js"
+			]
+		},
+		{
+			"matches": [ "*://*.themoviedb.org/network" ],
 			"js": [
 				"vendor/jquery-2.1.4.min.js",
 				"content/networkSearch.js"
+			]
+		},
+		{
+			"matches": [ "*://*.themoviedb.org/tv/*" ],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/tv.js"
+			]
+		},
+		{
+			"matches": [
+				"*://*.themoviedb.org/*/images/backdrops*",
+				"*://*.themoviedb.org/*/images/posters*"
+			],
+			"js": [
+				"vendor/jquery-2.1.4.min.js",
+				"content/images.js"
 			]
 		},
 		{
@@ -85,7 +118,8 @@
 	],
 
 	"icons": {
-		"19": "icons/icon.png",
+		"19": "icons/icon19.png",
+		"32": "icons/icon32.png",
 		"38": "icons/icon38.png",
 		"48": "icons/icon48.png",
 		"128": "icons/icon128.png"
@@ -95,5 +129,11 @@
 		"vendor/jquery-ui/images/*",
 		"icons/minus-icon.png",
 		"content/movieNewForm.html"
-	]
+	],
+
+	"browser_action": {
+		"default_popup": "pages/options.html?popup"
+	},
+
+	"content_security_policy": "script-src 'self' https://use.fontawesome.com; object-src 'self'"
 }

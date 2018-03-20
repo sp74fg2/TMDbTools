@@ -8,21 +8,26 @@ function executeNetworkSearch() {
 		let url = 'https://www.themoviedb.org/search/remote/tv_network?take=20&skip=0';
 		url = url + '&page=1&pageSize=20&filter[filters][0][value]=';
 		url = url + $('#input').val();
-		url = url + '&filter[filters][0][operator]=startswith&filter[filters][0][field]=name';
+		url = url + '&filter[filters][0][operator]=contains&filter[filters][0][field]=name';
 		url = url + '&filter[filters][0][ignoreCase]=false&filter[logic]=and&_=';
 		url = url + Math.round(new Date().getTime());
 		$.ajax(url)
 			.done(function (data) {
-				data.forEach(function (item) {
-					console.log(item.id + ' ' + item.name);
-					if (item.id !== 0) {
-						$('<a/>')
-							.text(item.name + ' (' + item.id + ')')
-							.css('display', 'block')
-							.css('margin', '10px')
-							.attr('href', 'https://themoviedb.org/network/' + item.id)
-							.attr('target', '_blank')
-							.appendTo('#results');
+				data.results.forEach(function (network) {
+					//console.log(network.id + ' ' + network.name);
+					if (network.id !== 0) {
+						let anchor = $('<a target="_blank" style="display:block;margin:10px;"><span/><span/><img></a>');
+						let networkName = network.name;
+						if (network.origin_country) {
+							networkName += ' (' + network.origin_country + ')';
+						}
+						anchor.attr('href', 'https://themoviedb.org/network/' + network.id);
+						anchor.find('span').first().text(networkName).css('margin-right','10px');
+						anchor.find('span').last().text(network.id).css('color', 'grey').css('margin-right','10px');
+						if (network.logo_path) {
+							anchor.find('img').attr('src', 'https://image.tmdb.org/t/p/h15' + network.logo_path);
+						}
+						anchor.appendTo('#results');
 					}
 				});
 			})
@@ -32,7 +37,7 @@ function executeNetworkSearch() {
 	}
 };
 
-document.title = 'TMDb Network Search';
+document.title = 'Network Search';
 $('div.media h2').text('Network Search');
 $('div.media p').remove();
 let thread = null;

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title>Options for TMDb Tools</title>
+	<link rel="stylesheet" type="text/css" href="options.css" />
+	<script src="/vendor/jquery-2.1.4.min.js"></script>
+	<script src="options.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h2>TMDb Tools Configuration</h2>
+		</header>
+		<div class="optionsContainer">
+			<div class="switchContainer popup"
+				 title="Add icons beside the TV show name that will search for the title on Trakt & TVDb">
+				<label class="switch">
+					<input type="checkbox" id="addTvSearchIcons" />
+					<span class="slider"></span>
+				</label>
+				<label for="addTvSearchIcons">Add Search Icons to TV Shows</label>
+			</div>
+			<div class="switchContainer">
+				<label class="switch">
+					<input type="checkbox" id="releaseInfoTools" />
+					<span class="slider"></span>
+				</label>
+				<label for="releaseInfoTools">Add Filters for Release Info</label>
+			</div>
+			<div class="switchContainer last">
+				<label class="switch">
+					<input type="checkbox" id="linkifyExternalIdIcons" />
+					<span class="slider"></span>
+				</label>
+				<label for="linkifyExternalIdIcons">Linkify External Id Icons</label>
+			</div>
+			<div class="switchContainer popup last"
+				 title="Add change log thumbnails for images & linkify Youtube videos and episodes">
+				<label class="switch">
+					<input type="checkbox" id="changeLogModifications" />
+					<span class="slider"></span>
+				</label>
+				<label for="changeLogModifications">Add Change Log thumbnails and links</label>
+			</div>
+			<div class="moderator">
+				<div>
+					<h3>Moderator</h3>
+					<p></p>
+				</div>
+				<div class="switchContainer">
+					<label class="switch">
+						<input type="checkbox" id="modOptionsInPopup" data-defaultoff />
+						<span class="slider"></span>
+					</label>
+					<label for="modOptionsInPopup">Show Mod Options in Popup</label>
+				</div>
+				<p>These options only apply if you have moderator privileges</p>
+				<div class="switchContainer">
+					<label class="switch">
+						<input type="checkbox" id="lockAllImages" />
+						<span class="slider"></span>
+					</label>
+					<label for="lockAllImages">Add Lock All Images button</label>
+				</div>
+				<div class="switchContainer last popup">
+					<label class="switch">
+						<input type="checkbox" id="autoDeleteImages" data-defaultoff />
+						<span class="slider"></span>
+					</label>
+					<label for="autoDeleteImages">
+						Auto Delete Images
+						<i class="fas fa-sync-alt" title="This option resets to off when browser is restarted"></i>
+					</label>
+				</div>
+			</div>
+			<div style="text-align:center;margin:5px;"><a id="fullOptions" href="#">Full Options</a></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -2,6 +2,9 @@
 
 var genreLookup;
 
+//reset the "autoDeleteImages" option when started
+chrome.storage.local.remove('autoDeleteImages');
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 		switch (request.method) {
