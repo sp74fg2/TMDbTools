@@ -80,3 +80,13 @@ chrome.storage.local.get({ changeLogModifications: true }, function (items) {
 	}
 });
 
+// remove overlay
+chrome.storage.local.get({ removeOverlay: true }, function (items) {
+	if (items.removeOverlay) {
+		var css = '<style type="text/css">' +
+			'.k-overlay{display: none !important;}' +
+			'body.blur>*:not(.k-widget){filter:none !important;}' +
+			'</style>';
+		$(css).appendTo('head');
+	}
+})

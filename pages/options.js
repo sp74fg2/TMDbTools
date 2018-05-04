@@ -5,7 +5,7 @@ let storage = chrome.storage.local;
 $(window).load(function () {
 	//configure for popup or non-popup
 	if (location.href.includes('?popup')) {
-		console.log('popup!');
+		//console.log('popup!');
 		$('.switchContainer:not(.popup)').hide();
 	} else {
 		$('#fullOptions').hide();
