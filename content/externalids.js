@@ -52,7 +52,7 @@ function linkTvdbId() {
 			tvdbId + '" target="_blank" tabindex="-1"></a>');
 	} else {
 		tvdbLabel.wrap('<a id="tvdbIdLink" ' +
-			'href="http://thetvdb.com/?tab=listseries&function=Search&string=' +
+			'href="https://www.thetvdb.com/search?q=' +
 			encodeURIComponent($('meta[property="og:title"]').attr('content')) + '" target="_blank" tabindex="-1"></a>');
 	}
 }
